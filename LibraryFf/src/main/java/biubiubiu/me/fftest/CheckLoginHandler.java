@@ -30,7 +30,7 @@ public abstract class CheckLoginHandler extends TextHttpResponseHandler {
     @Override
     public void onSuccess(int statusCode, Header[] headers, String responseString) {
         System.out.println("responseString = " + responseString);
-        if (responseString.contains("登录验证中")) {
+        if (responseString.contains("登录验证中") || responseString.contains("invalid")) {
             onFailure();
         } else {
             onSuccess();

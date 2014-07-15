@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.PersistentCookieStore;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
@@ -20,6 +21,7 @@ public class MyActivity extends ActionBarActivity {
 
     private AsyncHttpClient mClient;
     private UrlFactory mUrlFactory;
+    private PersistentCookieStore mCookieStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +29,10 @@ public class MyActivity extends ActionBarActivity {
         mUrlFactory = new UrlFactory(this);
         setContentView(R.layout.activity_my);
         mClient = new AsyncHttpClient();
+        mClient.addHeader("User-Agent", "zhangwei1.0");
+        mCookieStore = new PersistentCookieStore(MyActivity.this);
+        mClient.setCookieStore(mCookieStore);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,7 +54,7 @@ public class MyActivity extends ActionBarActivity {
     }
 
     public void getChapter(View view) {
-        mClient.get(AppConstants.CHAPTER_URL,
+        mClient.get(AppConstants.DEMO_CHAPTER_URL,
                 new RecordConfigHandler(MyActivity.this) {
                     @Override
                     protected void postGetChapter() {
@@ -87,7 +91,8 @@ public class MyActivity extends ActionBarActivity {
     }
 
     public void logout(View view) {
-        NetUtil.clearCookie(this);
+//        NetUtil.clearCookie(this);
+        mCookieStore.clear();
         ToastUtils.show(this, "cookie cleared");
     }
 }

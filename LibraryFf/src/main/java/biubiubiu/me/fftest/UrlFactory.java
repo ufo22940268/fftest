@@ -2,6 +2,9 @@ package biubiubiu.me.fftest;
 
 import android.content.Context;
 
+import java.net.URLEncoder;
+
+import me.biubiubiu.libraryff.AppConstants;
 import me.biubiubiu.libraryff.ConfigResult;
 
 /**
@@ -16,6 +19,8 @@ public class UrlFactory {
 
     public String buildCheckLoginUrl() {
         ConfigResult configResult = ConfigResult.readConfig(mContext);
-        return null;
+        String url = String.format("http://wap.cmread.com/sso/smsautoLogin?rm=%s&redirect_uri=%s",
+                configResult.selectRm(mContext), AppConstants.ENCODED_DEMO_CHAPTER_URL);
+        return url;
     }
 }

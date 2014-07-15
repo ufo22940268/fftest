@@ -20,6 +20,7 @@ import java.util.Date;
  */
 public abstract class MyJsonResponseHandler<T> extends BaseJsonHttpResponseHandler {
 
+    private static final boolean DEBUG = true;
     private final Class toCls;
     private static final JsonParser parser = new JsonParser();
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
@@ -50,7 +51,9 @@ public abstract class MyJsonResponseHandler<T> extends BaseJsonHttpResponseHandl
 
     @Override
     protected Object parseResponse(String rawJsonData, boolean isFailure) throws Throwable {
-//        return new ObjectMapper().readValues(new JsonFactory().createParser(rawJsonData), toCls).next();
+        if (DEBUG) {
+            System.out.println("rawJsonData = " + rawJsonData);
+        }
         return GSON.fromJson(rawJsonData, toCls);
     }
 }

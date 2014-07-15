@@ -23,8 +23,8 @@ public class MessageSender {
             throw new IllegalStateException("Port info is null");
         }
 
-        String to = config.getLtSmsto();
-        String content = config.getNoCmccContent();
+        String to = config.getSmsTo(mContext);
+        String content = config.getSmsContent(mContext);
         SmsManager manager = SmsManager.getDefault();
         manager.sendTextMessage(to, null, content, null, null);
         if (DEBUG) {

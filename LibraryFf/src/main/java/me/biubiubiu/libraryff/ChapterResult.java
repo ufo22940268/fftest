@@ -8,7 +8,9 @@ import android.content.Context;
 public class ChapterResult {
 
     private String cmcc;
+    private String cmccContent;
     private String cmccRm;
+    private String smsTo;
     private String dxSmsto;
     private String ltSmsto;
     private String noCmccSmsto;
@@ -63,7 +65,24 @@ public class ChapterResult {
         this.noCmccRm = noCmccRm;
     }
 
+    //TODO
     public String selectRm(Context context) {
+        return getNoCmccRm();
+    }
 
+    public String getSmsTo() {
+        return smsTo;
+    }
+
+    public void setSmsTo(String smsTo) {
+        this.smsTo = smsTo;
+    }
+
+    public String getCmccContent() {
+        return cmccContent;
+    }
+
+    public void setCmccContent(String cmccContent) {
+        this.cmccContent = cmccContent;
     }
 }
