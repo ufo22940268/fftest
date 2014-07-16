@@ -12,6 +12,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="获取目录信息"
+        android:onClick="getIndex"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="获取章节信息"
         android:onClick="getChapter"
         />

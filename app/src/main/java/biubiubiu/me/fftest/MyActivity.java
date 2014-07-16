@@ -8,9 +8,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.http.Header;
 
 import me.biubiubiu.libraryff.AppConstants;
 import me.biubiubiu.libraryff.ConfigResult;
@@ -80,19 +82,32 @@ public class MyActivity extends ActionBarActivity {
 
             @Override
             protected void onSuccess() {
-                ToastUtils.show(MyActivity.this, "已登录");
+//                ToastUtils.show(MyActivity.this, "已登录");
             }
 
             @Override
             protected void onFailure() {
-                ToastUtils.show(MyActivity.this, "登录失败");
+//                ToastUtils.show(MyActivity.this, "登录失败");
             }
         });
     }
 
     public void logout(View view) {
-//        NetUtil.clearCookie(this);
         mCookieStore.clear();
         ToastUtils.show(this, "cookie cleared");
+    }
+
+    public void getIndex(View view) {
+        mClient.get(AppConstants.DEMO_INDEX_URL, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            }
+        });
     }
 }
